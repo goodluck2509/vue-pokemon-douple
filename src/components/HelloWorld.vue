@@ -11,25 +11,88 @@
     </div>
   </div>
   </div>
+  <div>
+    <h1>infor</h1>
+    <h2>{{username}}</h2>
+    <h2>{{age}}</h2>
+    <br/>
+     <input
+      placeholder="Nhập vào đây"
+      v-model="usernameInput"
+    />
+    <div>
+      <button @click="changeUsername">Change username</button>
+    </div>
+    <br/>
+    <div>
+      <div>{{getUsername}}</div>
+      <div>{{getAge}}</div>
+    </div>
+  </div>
+  <div>
+    <h4> {{ name }}</h4>
+    <h4> Age: {{ age}}</h4>
+    <h4 v-pre> Age: {{ age}}</h4>
+    <p>
+      <a v-bind:href="link">Click link</a>
+    </p>
+    <p v-html="content"></p>
+    <!-- <h4>content: {{ content}}</h4> -->
+    <button disabled="isDisable">Bam vao day</button>
+  </div>
+    <div class="fetchdata">
+		<h1>{{ msg }}</h1>
+		<button @click="fetchData">Click Me!</button>
+	</div>
 </template>
 
 <script>
+
+// phan event bus
+// import emitter from 'tiny-emitter/instance'
+
+import { mapGetters } from 'vuex';
+
+
 export default {
   name: 'HelloWorld',
   data() {
     return {
-      tempMessage: ''
+      name: 'Nguyễn Văn A',
+      age: 10,
+      link: "https://www.google.com.vn",
+      content: '<strong>Nội dung in đậm<strong/>',
+      isDisable: true,
+      tempMessage: '',
+      usernameInput: '',
     }
   },
   props: {
     msg: String
   },
   methods: {
-    sendMessage() {
-      this.$emit('inputData', this.tempMessage);
-      this.tempMessage = '';
-    }
-  }
+    // truyen prop con sang cha dung emit
+    // sendMessage() {
+    //   this.$emit('inputData', this.tempMessage);
+    //   this.tempMessage = '';
+    // }
+    // event bus
+    // sendMessage() {
+    //   emitter.emit('inputData', this.tempMessage);
+    //   this.tempMessage = '';
+    // }
+
+    //vuex
+    changeUsername(){
+        this.$store.dispatch('handleChangeUsername', this.usernameInput)
+      }
+  },
+  computed:{
+    usename(){
+      return this.$store.state.username;
+    },
+    ...mapGetters(['getUsername','getAge'])
+  },
 }
 </script>
 
@@ -48,5 +111,10 @@ li {
 }
 a {
   color: #42b983;
+}
+
+button {
+	padding: 5px 5px;
+	font-size: 15px;
 }
 </style>

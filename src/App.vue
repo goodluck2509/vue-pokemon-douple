@@ -9,6 +9,9 @@
     </div>
     <h3>{{message}}</h3>
     <HelloWorld msg="Welcome to Your Vue.js App"  @inputData="updateMessage"/>
+    <hr />
+    <HelloWorld2 />
+
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <main-screen v-if="statusMatch === 'default' " @onStart="onHandleBeforeStart"/>
@@ -16,10 +19,19 @@
 />
   <!-- <MainScreen/> -->
   <!-- <InteractScreen/> -->
+   <p> {{ info }}</p>
 </template>
 
  <script>
 import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld2 from './components/HelloWorld2.vue'
+
+
+import axios from 'axios';
+
+
+// export default EventBus;
+
 import MainScreen from './components/MainScreen.vue'
 import InteractScreen from './components/InteractScreen.vue'
 import Navbar from "./components/Navbar.vue"
@@ -37,16 +49,19 @@ export default {
         cardsContext: [],
       },
         statusMatch: "default",
-        message: 'Message default'
+        message: 'Message default',
+           info: null
     }
   },
   components: {
     HelloWorld,
+    HelloWorld2,
     Navbar,
     MainScreen,
     InteractScreen
   },
   methods:{
+
       clickA: function () {
             console.log('gọi method clickA')
             return this.a
@@ -73,9 +88,16 @@ export default {
 
     console.log("test o day",this.settings.cardsContext);
 
-    this.statusMatch = "match"
+    this.statusMatch = "match";
+    
     }
+  },
+  mounted(){
+    axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (this.info = response))
+ 
   }
+
 }
 </script>
 
