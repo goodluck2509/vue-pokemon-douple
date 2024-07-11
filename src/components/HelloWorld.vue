@@ -30,15 +30,6 @@
     </div>
   </div>
   <div>
-    <h4> {{ name }}</h4>
-    <h4> Age: {{ age}}</h4>
-    <h4 v-pre> Age: {{ age}}</h4>
-    <p>
-      <a v-bind:href="link">Click link</a>
-    </p>
-    <p v-html="content"></p>
-    <!-- <h4>content: {{ content}}</h4> -->
-    <button disabled="isDisable">Bam vao day</button>
   </div>
     <div class="fetchdata">
 		<h1>{{ msg }}</h1>
@@ -58,11 +49,6 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      name: 'Nguyễn Văn A',
-      age: 10,
-      link: "https://www.google.com.vn",
-      content: '<strong>Nội dung in đậm<strong/>',
-      isDisable: true,
       tempMessage: '',
       usernameInput: '',
     }

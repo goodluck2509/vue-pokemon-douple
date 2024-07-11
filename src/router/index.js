@@ -10,11 +10,13 @@ const routes = [
     { path: '/', component: Home },
     { path: '/products', component: Products },
     { path: '/about', component: About },
-    {
-        path: '/coins/:id',
-        name: 'Coins',
-        component: Coins
-      }
+    { path: '/coins', component: Coins },
+    // {
+    //     path: '/coins/:id',
+    //     name: 'Coins',
+    //     component: Coins
+    //   }
+
 ];
 
 const router = createRouter({

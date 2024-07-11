@@ -31,3 +31,19 @@ export default {
     }
 }
 </script>
+
+<style>
+h1 {
+    padding: 10px;
+}
+
+h3 {
+    padding: 14px;
+}
+
+button {
+	padding: 5px 5px;
+	font-size: 15px;
+}
+</style>
+

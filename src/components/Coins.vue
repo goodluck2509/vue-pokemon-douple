@@ -1,8 +1,11 @@
 <template>
-  <div>
+  <!-- <div>
     <p>Name: {{ coin.name }}</p>
     <p>Symbol: {{ coin.symbol }}</p>
     <p>Price (USD): {{ coin.price_usd }}</p>
+  </div> -->
+  <div>
+    <h1>Name</h1>
   </div>
 </template>
 <script>
