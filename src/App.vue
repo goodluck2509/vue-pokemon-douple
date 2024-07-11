@@ -1,4 +1,14 @@
 <template>
+  <Navbar/>
+  <router-view/>
+    <div>
+        <p>Click A {{ clickA() }} times</p>
+        <p>Click B {{ clickB() }} times</p>
+        <button v-on:click="a++">Click A</button>
+        <button v-on:click="b++">Click B</button>
+    </div>
+    <h3>{{message}}</h3>
+    <HelloWorld msg="Welcome to Your Vue.js App"  @inputData="updateMessage"/>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <main-screen v-if="statusMatch === 'default' " @onStart="onHandleBeforeStart"/>
@@ -9,9 +19,10 @@
 </template>
 
  <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue'
 import MainScreen from './components/MainScreen.vue'
 import InteractScreen from './components/InteractScreen.vue'
+import Navbar from "./components/Navbar.vue"
 
 import {shuffled} from "./utils/array.js"
 
@@ -19,18 +30,34 @@ export default {
   name: 'App',
   data(){
     return {
+      a: 0,
+      b: 0,
       settings: {
         totalOfBlocks: 0,
         cardsContext: [],
       },
         statusMatch: "default",
+        message: 'Message default'
     }
   },
   components: {
+    HelloWorld,
+    Navbar,
     MainScreen,
     InteractScreen
   },
   methods:{
+      clickA: function () {
+            console.log('gọi method clickA')
+            return this.a
+        },
+        clickB: function () {
+            console.log('gọi method clickB')
+            return this.b
+        },
+    updateMessage(mes) {
+      this.message = mes;
+    },
     onHandleBeforeStart(config){
       console.log("runing hanlde before start", config)
     //data ready
