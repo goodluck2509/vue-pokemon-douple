@@ -5,11 +5,13 @@ import Products from '../components/Products.vue';
 import About from '../components/About.vue';
 
 import Coins from '../components/Coins'
+import Contact from '../components/Contact'
 
 const routes = [
     { path: '/', component: Home },
     { path: '/products', component: Products },
     { path: '/about', component: About },
+    { path: '/contact', component: Contact },
     { path: '/coins', component: Coins },
     // {
     //     path: '/coins/:id',
